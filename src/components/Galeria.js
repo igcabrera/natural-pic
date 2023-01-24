@@ -1,19 +1,23 @@
 import "../assets/css/galeria.css";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import Heart from "./Heart";
 import Context from "../Context";
 
 export default function Home() {
   const {fotos, setFotos} = useContext(Context);
+
   
   const setFavorito = (id) => {
   const fotoIndex = fotos.findIndex((f) => f.id === id);
   fotos[fotoIndex].favorito = !fotos[fotoIndex].favorito;
   setFotos([...fotos]);
+  
   }
   return (
     <div className="galeria grid-columns-5 p-3">
-      {
+    
+    {
+          
         fotos.map((foto, i) =>
         <div
         onClick={() => setFavorito(foto.id)}

@@ -6,6 +6,7 @@ export default function Home() {
       <h1>Natural Pic</h1>
 
       <Galeria />
+      
     </div>
   );
 }

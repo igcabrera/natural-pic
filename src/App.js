@@ -7,27 +7,37 @@ import Navbar from "./components/Navbar";
 
 import Home from "./views/Home";
 import Favoritos from "./views/Favoritos";
+import axios from 'axios';
+
 
 export default function App() {
 
   const [fotos, setFotos] = useState([]);
 
-  const endpoint = "/fotos.json";
-  
+
+
   const getFotos = async () => {
-    const res = await fetch(endpoint);
-    let { photos } = await res.json();
-    photos = photos.map((photo) => ({
-      id: photo.id,
-      src: photo.src.tiny,
-      desc: photo.alt,
-      favorite: false
-    }));
-    setFotos(photos);
+    try {
+      const res = await axios.get('/data/fotos.json');
+      const photos = res.data.photos;
+      const ArrayFotos = photos.map((photo) => ({
+        id: photo.id,
+        src: photo.src.tiny,
+        desc: photo.alt,
+        favorite: false
+      }));
+      setFotos(ArrayFotos);
+    } catch (err) {
+      console.log(err);
+    }
   };
-  useEffect (() => {
+  
+
+useEffect (() => {
     getFotos();
-  }, []);
+}, []);
+
+
 
   return (
     <div className="App">

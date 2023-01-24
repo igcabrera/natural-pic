@@ -4,7 +4,7 @@ import Context from "../Context";
 export default function Favoritos() {
   const {fotos, setFotos } = useContext(Context);
   const total_favoritas = (fotos.filter((foto) => foto.favorito)).length;
-  
+  console.log("log", total_favoritas)
   return (
     <div>
       <h1>Fotos favoritas</h1>
